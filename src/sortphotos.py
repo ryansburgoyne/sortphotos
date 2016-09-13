@@ -416,8 +416,10 @@ def sortPhotos(src_dir, dest_dir, sort_format, rename_format, recursive=False,
                     continue  # if file is same, we just ignore it (for copy option)
                 else:
                     shutil.copy2(src_file, dest_file)
+                    subprocess.call('synoindex -a %s' % dest_file)
             else:
                 shutil.move(src_file, dest_file)
+                subprocess.call('synoindex -n %s %s' % (dest_file, src_file))
 
 
 
