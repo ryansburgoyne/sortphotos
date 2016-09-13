@@ -353,6 +353,7 @@ def sortPhotos(src_dir, dest_dir, sort_format, rename_format, recursive=False,
             dest_file = os.path.join(dest_file, thedir)
             if not os.path.exists(dest_file):
                 os.makedirs(dest_file)
+                subprocess.call('synoindex -A %s' % dest_file, shell=True)
 
         # rename file if necessary
         filename = os.path.basename(src_file)
