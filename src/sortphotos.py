@@ -353,7 +353,7 @@ def sortPhotos(src_dir, dest_dir, sort_format, rename_format, recursive=False,
             dest_file = os.path.join(dest_file, thedir)
             if not os.path.exists(dest_file):
                 os.makedirs(dest_file)
-                subprocess.call('synoindex -A %s' % dest_file, shell=True)
+                subprocess.call(['synoindex', '-A', dest_file])
 
         # rename file if necessary
         filename = os.path.basename(src_file)
@@ -417,10 +417,10 @@ def sortPhotos(src_dir, dest_dir, sort_format, rename_format, recursive=False,
                     continue  # if file is same, we just ignore it (for copy option)
                 else:
                     shutil.copy2(src_file, dest_file)
-                    subprocess.call('synoindex -a %s' % dest_file, shell=True)
+                    subprocess.call(['synoindex', '-a', dest_file])
             else:
                 shutil.move(src_file, dest_file)
-                subprocess.call('synoindex -n %s %s' % (dest_file, src_file), shell=True)
+                subprocess.call(['synoindex', '-n', dest_file, src_file])
 
 
 
